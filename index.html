@@ -1,116 +1,1754 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Clavia - Sell with Intelligence</title>
+  <title>Clavia — Serviços Locais com Segurança e Inteligência</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+
   <style>
-    body { font-family: 'Poppins', sans-serif; margin: 0; padding: 0; color: #2c2c2c; background: linear-gradient(135deg, #ffe9e3, #fffef0); }
-    header, section, footer { padding: 50px 25px; max-width: 960px; margin: auto; }
-    h1, h2, h3 { color: #542e71; }
-    header { background: linear-gradient(135deg, #ff9770, #ffb570); color: #ffffff; text-align: center; border-bottom: 3px solid #542e71; border-radius: 0 0 20px 20px; }
-    header h1 { margin: 0 0 15px; font-size: 2.5rem; }
-    .steps, .benefits, .plans, .movement { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 20px; }
-    .card { flex: 1; background: #ffffff; padding: 25px; border-radius: 12px; border: 1px solid #ffd6d6; box-shadow: 0 4px 8px rgba(0,0,0,0.08); transition: transform 0.3s, opacity 0.5s ease; opacity: 0; transform: scale(0.95); animation: fadeInZoom 1s forwards; }
-    .card:nth-child(1) { animation-delay: 0.2s; }
-    .card:nth-child(2) { animation-delay: 0.4s; }
-    .card:nth-child(3) { animation-delay: 0.6s; }
-    .card:hover { transform: scale(1.02); }
-    .testimonial { font-style: italic; background: #ffd6d6; padding: 25px; border-radius: 12px; margin: 50px 0; color: #2c2c2c; transition: opacity 0.5s ease; opacity: 0; animation: fadeInZoom 1s forwards 0.8s; }
-    footer { font-size: 14px; text-align: center; background: #ffb570; color: #2c2c2c; border-top: 2px solid #542e71; margin-top: 60px; padding: 30px 20px; }
-    ul { padding-left: 20px; }
-    @keyframes fadeInZoom {
-      to { opacity: 1; transform: scale(1); }
+    /* ─── RESET & BASE ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --purple:      #825fb8;
+      --purple-light:#d2b8fa;
+      --black:       #000000;
+      --graphite:    #0d0c14;
+      --graphite-2:  #151520;
+      --surface:     #1a1828;
+      --off-white:   #f2f1f2;
+      --white:       #ffffff;
+
+      --glow-purple: rgba(130,95,184,0.4);
+      --glow-light:  rgba(210,184,250,0.15);
+
+      --font-main: 'Poppins', sans-serif;
+      --font-mono: 'Courier Prime', monospace;
+
+      --transition: 0.4s cubic-bezier(0.23,1,0.32,1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-main);
+      background: var(--graphite);
+      color: var(--off-white);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    ::selection { background: var(--purple); color: var(--white); }
+
+    /* ─── SCROLLBAR ─────────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--graphite); }
+    ::-webkit-scrollbar-thumb { background: var(--purple); border-radius: 2px; }
+
+    /* ─── CANVAS BACKGROUND ─────────────────────────────────── */
+    #particle-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ─── NOISE OVERLAY ─────────────────────────────────────── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+      background-size: 200px;
+      opacity: 0.4;
+    }
+
+    /* ─── UTILITIES ─────────────────────────────────────────── */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .mono {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      color: var(--purple-light);
+      text-transform: uppercase;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border: 1px solid rgba(210,184,250,0.25);
+      border-radius: 100px;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      color: var(--purple-light);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .tag::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--purple-light);
+      box-shadow: 0 0 8px var(--purple-light);
+      animation: pulse-dot 2s infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.4; transform: scale(0.7); }
+    }
+
+    section { position: relative; z-index: 2; }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 72px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .section-header p {
+      font-size: 1.05rem;
+      color: rgba(242,241,242,0.6);
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .highlight { color: var(--purple-light); }
+
+    /* ─── GLASS CARD ─────────────────────────────────────────── */
+    .glass {
+      background: rgba(26,24,40,0.6);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(210,184,250,0.12);
+      border-radius: 20px;
+    }
+
+    .glass-hover {
+      transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+    }
+
+    .glass-hover:hover {
+      border-color: rgba(130,95,184,0.5);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(130,95,184,0.2);
+    }
+
+    /* ─── BUTTONS ────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      border-radius: 100px;
+      font-family: var(--font-main);
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      border: none;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.08);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .btn:hover::before { opacity: 1; }
+
+    .btn-primary {
+      background: var(--purple);
+      color: var(--white);
+      box-shadow: 0 0 40px rgba(130,95,184,0.4);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 0 60px rgba(130,95,184,0.65);
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--off-white);
+      border: 1px solid rgba(242,241,242,0.25);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--purple-light);
+      color: var(--purple-light);
+      transform: translateY(-2px);
+    }
+
+    .btn-large {
+      padding: 18px 48px;
+      font-size: 1.05rem;
+    }
+
+    /* ─── REVEAL ANIMATIONS ──────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.8s cubic-bezier(0.23,1,0.32,1),
+                  transform 0.8s cubic-bezier(0.23,1,0.32,1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    /* ════════════════════════════════════════════════════════════
+       HEADER
+    ════════════════════════════════════════════════════════════ */
+    #header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      transition: background var(--transition), backdrop-filter var(--transition), border-color var(--transition);
+      border-bottom: 1px solid transparent;
+    }
+
+    #header.scrolled {
+      background: rgba(13,12,20,0.85);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-color: rgba(210,184,250,0.08);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    /* LOGO */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .logo-mark {
+      width: 36px;
+      height: 36px;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .logo-mark img { width: 100%; height: 100%; object-fit: contain; }
+
+    .logo-text {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      color: var(--white);
+      text-transform: uppercase;
+    }
+
+    .logo-text span { color: var(--purple-light); }
+
+    /* NAV */
+    nav { display: flex; align-items: center; gap: 8px; }
+
+    nav a {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: rgba(242,241,242,0.65);
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: color 0.25s, background 0.25s;
+    }
+
+    nav a:hover { color: var(--white); background: rgba(255,255,255,0.05); }
+
+    .header-cta { margin-left: 8px; }
+
+    /* Mobile nav */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--off-white);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+
+    @media (max-width: 768px) {
+      nav { display: none; position: fixed; top: 72px; left: 0; right: 0; flex-direction: column; padding: 24px; background: rgba(13,12,20,0.97); backdrop-filter: blur(24px); border-bottom: 1px solid rgba(210,184,250,0.08); gap: 4px; }
+      nav.open { display: flex; }
+      nav a { padding: 14px 16px; }
+      .header-cta { display: none; }
+      .menu-toggle { display: flex; }
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       HERO
+    ════════════════════════════════════════════════════════════ */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Gradient orbs */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+
+    .orb-1 {
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(130,95,184,0.3) 0%, transparent 70%);
+      top: -100px; left: -200px;
+      animation: float-orb 12s ease-in-out infinite;
+    }
+
+    .orb-2 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(210,184,250,0.15) 0%, transparent 70%);
+      top: 200px; right: -100px;
+      animation: float-orb 15s ease-in-out infinite reverse;
+    }
+
+    .orb-3 {
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(130,95,184,0.2) 0%, transparent 70%);
+      bottom: -50px; left: 40%;
+      animation: float-orb 18s ease-in-out infinite;
+    }
+
+    @keyframes float-orb {
+      0%, 100% { transform: translate(0, 0); }
+      33%       { transform: translate(30px, -40px); }
+      66%       { transform: translate(-20px, 20px); }
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .hero-content { position: relative; z-index: 2; }
+
+    .hero-headline {
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+
+    .hero-headline .line-2 {
+      background: linear-gradient(135deg, var(--purple-light) 0%, var(--purple) 60%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: rgba(242,241,242,0.65);
+      max-width: 480px;
+      margin-bottom: 48px;
+      line-height: 1.7;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 64px;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+    }
+
+    .stat-item {}
+
+    .stat-value {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .stat-value span { color: var(--purple-light); }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: rgba(242,241,242,0.45);
+      font-weight: 400;
+    }
+
+    /* Hero visual — floating UI cards */
+    .hero-visual {
+      position: relative;
+      height: 560px;
+    }
+
+    .floating-card {
+      position: absolute;
+      padding: 20px 24px;
+      animation: float-card 6s ease-in-out infinite;
+    }
+
+    .floating-card:nth-child(2) { animation-duration: 8s; animation-delay: -2s; }
+    .floating-card:nth-child(3) { animation-duration: 7s; animation-delay: -4s; }
+    .floating-card:nth-child(4) { animation-duration: 9s; animation-delay: -1s; }
+
+    @keyframes float-card {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-14px); }
+    }
+
+    .card-main {
+      top: 40px; left: 0;
+      width: 280px;
+      border-radius: 20px;
+      background: rgba(26,24,40,0.85);
+      border: 1px solid rgba(210,184,250,0.2);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(130,95,184,0.1);
+    }
+
+    .card-avatar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .avatar-circle {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple) 0%, var(--purple-light) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .card-name { font-weight: 600; font-size: 0.95rem; }
+    .card-role { font-size: 0.75rem; color: var(--purple-light); font-family: var(--font-mono); }
+
+    .rating-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .stars { color: #f5c518; font-size: 0.85rem; }
+    .rating-num { font-size: 0.8rem; color: rgba(242,241,242,0.6); }
+
+    .verified-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      color: #4ade80;
+      background: rgba(74,222,128,0.1);
+      border: 1px solid rgba(74,222,128,0.2);
+      padding: 4px 12px;
+      border-radius: 100px;
+    }
+
+    .verified-badge::before {
+      content: '';
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: #4ade80;
+      box-shadow: 0 0 6px #4ade80;
+    }
+
+    .card-payment {
+      top: 220px; right: 0;
+      width: 240px;
+      border-radius: 16px;
+      background: rgba(130,95,184,0.15);
+      border: 1px solid rgba(130,95,184,0.4);
+      backdrop-filter: blur(20px);
+      animation-delay: -3s !important;
+    }
+
+    .payment-label {
+      font-size: 0.7rem;
+      font-family: var(--font-mono);
+      color: var(--purple-light);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .payment-amount {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .payment-status {
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      color: #4ade80;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .payment-status::before {
+      content: '';
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: #4ade80;
+      box-shadow: 0 0 8px #4ade80;
+      animation: pulse-dot 1.5s infinite;
+    }
+
+    .card-match {
+      bottom: 80px; left: 20px;
+      width: 200px;
+      border-radius: 14px;
+      background: rgba(26,24,40,0.9);
+      border: 1px solid rgba(210,184,250,0.15);
+      backdrop-filter: blur(20px);
+    }
+
+    .match-label { font-size: 0.65rem; font-family: var(--font-mono); color: var(--purple-light); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
+
+    .match-bar { height: 4px; background: rgba(255,255,255,0.08); border-radius: 2px; overflow: hidden; margin-bottom: 6px; }
+    .match-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--purple) 0%, var(--purple-light) 100%); }
+
+    .match-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.72rem; color: rgba(242,241,242,0.55); }
+    .match-pct { color: var(--purple-light); font-weight: 600; }
+
+    /* ════════════════════════════════════════════════════════════
+       HOW IT WORKS
+    ════════════════════════════════════════════════════════════ */
+    #como-funciona {
+      padding: 120px 0;
+    }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 80px;
+    }
+
+    .pillar-card {
+      padding: 40px 32px;
+      text-align: center;
+    }
+
+    .pillar-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(130,95,184,0.2) 0%, rgba(210,184,250,0.05) 100%);
+      border: 1px solid rgba(130,95,184,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      font-size: 1.8rem;
+      transition: var(--transition);
+    }
+
+    .pillar-card:hover .pillar-icon {
+      background: linear-gradient(135deg, rgba(130,95,184,0.4) 0%, rgba(210,184,250,0.15) 100%);
+      box-shadow: 0 0 40px rgba(130,95,184,0.3);
+    }
+
+    .pillar-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; }
+    .pillar-card p { font-size: 0.9rem; color: rgba(242,241,242,0.6); line-height: 1.7; }
+
+    /* Main flow */
+    .flow-title {
+      text-align: center;
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin-bottom: 48px;
+      color: rgba(242,241,242,0.8);
+    }
+
+    .flow-steps {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+
+    .flow-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+      min-width: 100px;
+      max-width: 160px;
+    }
+
+    .flow-step-num {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(130,95,184,0.3) 0%, rgba(210,184,250,0.1) 100%);
+      border: 2px solid var(--purple);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--purple-light);
+      box-shadow: 0 0 20px rgba(130,95,184,0.3);
+      position: relative;
+      z-index: 1;
+    }
+
+    .flow-step-label {
+      font-size: 0.78rem;
+      text-align: center;
+      color: rgba(242,241,242,0.65);
+      font-weight: 500;
+      line-height: 1.3;
+    }
+
+    .flow-connector {
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(90deg, var(--purple) 0%, rgba(130,95,184,0.2) 100%);
+      max-width: 60px;
+      position: relative;
+      top: -24px;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       DUAL JOURNEY
+    ════════════════════════════════════════════════════════════ */
+    #jornadas {
+      padding: 80px 0 120px;
+    }
+
+    .journey-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 56px;
+      padding: 6px;
+      background: rgba(26,24,40,0.6);
+      border: 1px solid rgba(210,184,250,0.1);
+      border-radius: 100px;
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .journey-tab {
+      flex: 1;
+      padding: 12px 24px;
+      border-radius: 100px;
+      border: none;
+      background: transparent;
+      color: rgba(242,241,242,0.55);
+      font-family: var(--font-main);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .journey-tab.active {
+      background: var(--purple);
+      color: var(--white);
+      box-shadow: 0 0 30px rgba(130,95,184,0.4);
+    }
+
+    .journey-panel { display: none; }
+    .journey-panel.active { display: block; }
+
+    .journey-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .journey-step {
+      padding: 28px 24px;
+      border-radius: 16px;
+      position: relative;
+    }
+
+    .journey-step-num {
+      font-family: var(--font-mono);
+      font-size: 2rem;
+      font-weight: 700;
+      color: rgba(130,95,184,0.25);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .journey-step h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--white);
+    }
+
+    .journey-step p {
+      font-size: 0.82rem;
+      color: rgba(242,241,242,0.55);
+      line-height: 1.6;
+    }
+
+    .step-icon {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      font-size: 1.3rem;
+      opacity: 0.6;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       PAYMENT FLOW
+    ════════════════════════════════════════════════════════════ */
+    #pagamento {
+      padding: 80px 0 120px;
+    }
+
+    .payment-flow-visual {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .payment-actors {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 32px;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .actor-card {
+      padding: 28px 24px;
+      text-align: center;
+      border-radius: 20px;
+    }
+
+    .actor-icon {
+      font-size: 2.5rem;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .actor-name {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .actor-desc {
+      font-size: 0.78rem;
+      color: rgba(242,241,242,0.5);
+    }
+
+    .clavia-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .clavia-node {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple) 0%, rgba(210,184,250,0.3) 100%);
+      border: 2px solid var(--purple-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      box-shadow: 0 0 40px rgba(130,95,184,0.5);
+      animation: pulse-node 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse-node {
+      0%, 100% { box-shadow: 0 0 40px rgba(130,95,184,0.5); }
+      50%       { box-shadow: 0 0 70px rgba(130,95,184,0.8), 0 0 0 12px rgba(130,95,184,0.1); }
+    }
+
+    .clavia-label { font-size: 0.75rem; font-family: var(--font-mono); color: var(--purple-light); letter-spacing: 0.1em; }
+
+    .payment-steps-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 16px;
+    }
+
+    .pay-step {
+      padding: 20px;
+      border-radius: 14px;
+      border-left: 3px solid var(--purple);
+    }
+
+    .pay-step-num {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      color: var(--purple-light);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .pay-step-text { font-size: 0.82rem; color: rgba(242,241,242,0.7); line-height: 1.5; }
+
+    /* ════════════════════════════════════════════════════════════
+       TRUST & SECURITY
+    ════════════════════════════════════════════════════════════ */
+    #seguranca {
+      padding: 80px 0 120px;
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    .trust-card {
+      padding: 32px 28px;
+      border-radius: 18px;
+    }
+
+    .trust-icon {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .trust-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 10px; }
+    .trust-card p { font-size: 0.83rem; color: rgba(242,241,242,0.55); line-height: 1.65; }
+
+    /* ════════════════════════════════════════════════════════════
+       DIFERENCIAL
+    ════════════════════════════════════════════════════════════ */
+    #diferencial {
+      padding: 80px 0 120px;
+    }
+
+    .diff-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .diff-col {
+      padding: 40px 36px;
+      border-radius: 20px;
+    }
+
+    .diff-col-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .diff-col-label::after { content: ''; flex: 1; height: 1px; background: currentColor; opacity: 0.25; }
+
+    .diff-col.old { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); }
+    .diff-col.old .diff-col-label { color: rgba(242,241,242,0.4); }
+
+    .diff-col.new { background: rgba(130,95,184,0.1); border: 1px solid rgba(130,95,184,0.3); }
+    .diff-col.new .diff-col-label { color: var(--purple-light); }
+
+    .diff-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .diff-marker {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .diff-col.old .diff-marker { background: rgba(255,255,255,0.05); color: rgba(242,241,242,0.3); }
+    .diff-col.new .diff-marker { background: rgba(130,95,184,0.3); color: var(--purple-light); }
+
+    .diff-item span { font-size: 0.88rem; color: rgba(242,241,242,0.7); line-height: 1.55; }
+    .diff-col.new .diff-item span { color: rgba(242,241,242,0.85); }
+
+    /* ════════════════════════════════════════════════════════════
+       CTA FINAL
+    ════════════════════════════════════════════════════════════ */
+    #cta-final {
+      padding: 80px 0 120px;
+    }
+
+    .cta-box {
+      padding: 80px 60px;
+      border-radius: 28px;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(130,95,184,0.15) 0%, rgba(210,184,250,0.05) 100%);
+      border: 1px solid rgba(130,95,184,0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-box::before {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(130,95,184,0.15) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .cta-box h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .cta-box p {
+      font-size: 1.1rem;
+      color: rgba(242,241,242,0.65);
+      max-width: 500px;
+      margin: 0 auto 48px;
+      position: relative;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       FOOTER
+    ════════════════════════════════════════════════════════════ */
+    footer {
+      position: relative;
+      z-index: 2;
+      border-top: 1px solid rgba(210,184,250,0.08);
+      padding: 48px 0 32px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 32px;
+      margin-bottom: 48px;
+    }
+
+    .footer-brand p {
+      font-size: 0.85rem;
+      color: rgba(242,241,242,0.4);
+      max-width: 260px;
+      line-height: 1.65;
+      margin-top: 12px;
+    }
+
+    .footer-links h5 {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(242,241,242,0.5);
+      margin-bottom: 16px;
+    }
+
+    .footer-links ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+    .footer-links a {
+      font-size: 0.87rem;
+      color: rgba(242,241,242,0.55);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+
+    .footer-links a:hover { color: var(--purple-light); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-bottom p { font-size: 0.8rem; color: rgba(242,241,242,0.3); }
+
+    .footer-badge {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: rgba(242,241,242,0.2);
+      text-transform: uppercase;
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 56px; }
+      .hero-visual { height: 360px; max-width: 500px; margin: 0 auto; }
+      .pillars-grid { grid-template-columns: 1fr; }
+      .payment-actors { grid-template-columns: 1fr; gap: 20px; }
+      .diff-grid { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; }
+    }
+
+    @media (max-width: 600px) {
+      .hero-stats { gap: 24px; flex-wrap: wrap; }
+      .hero-ctas { flex-direction: column; }
+      .btn { width: 100%; justify-content: center; }
+      .cta-box { padding: 48px 28px; }
+      .flow-steps { gap: 8px; }
+      .flow-connector { max-width: 24px; }
     }
   </style>
 </head>
+
 <body>
-  <header>
-    <h1>Sell with empathy. Grow with intelligence.</h1>
-    <p>Clavia turns every word into a bridge between people and performance.</p>
-    <p><strong>Coming soon: Clavia will be launched. Stay tuned!</strong></p>
+  <!-- Particle canvas -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- ═══════════ HEADER ═══════════ -->
+  <header id="header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="#" class="logo">
+          <div class="logo-mark">
+            <img src="logotipo 14.png" alt="Clavia" />
+          </div>
+          <span class="logo-text">CLAV<span>IA</span></span>
+        </a>
+
+        <nav id="main-nav">
+          <a href="#como-funciona">Como funciona</a>
+          <a href="#jornadas">Jornadas</a>
+          <a href="#pagamento">Pagamento</a>
+          <a href="#seguranca">Segurança</a>
+          <a href="#diferencial">Diferenciais</a>
+        </nav>
+
+        <a href="#cta-final" class="btn btn-primary header-cta">
+          Começar agora
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <button class="menu-toggle" id="menu-toggle" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
   </header>
-  <section>
-    <h2>What's holding your sales back?</h2>
-    <ul>
-      <li>Salespeople without real emotional feedback.</li>
-      <li>Cold clients after soulless service.</li>
-      <li>Managers relying on guesswork, lacking human data.</li>
-    </ul>
-  </section>
-  <section>
-    <h2>How Clavia works</h2>
-    <div class="steps">
-      <div class="card"><strong>1.</strong> The seller speaks, Clavia listens.</div>
-      <div class="card"><strong>2.</strong> Emotional intelligence interprets every nuance.</div>
-      <div class="card"><strong>3.</strong> Human and actionable feedback, ready to go.</div>
+
+  <!-- ═══════════ HERO ═══════════ -->
+  <section id="hero">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <div class="container">
+      <div class="hero-grid">
+        <!-- Content -->
+        <div class="hero-content">
+          <div class="tag reveal">Plataforma de serviços locais</div>
+
+          <h1 class="hero-headline reveal reveal-delay-1">
+            Serviços locais<br>
+            com <span class="line-2">segurança<br>e inteligência.</span>
+          </h1>
+
+          <p class="hero-sub reveal reveal-delay-2">
+            Conectamos quem precisa de serviços a profissionais verificados — com pagamento intermediado, jornada digital e proteção total em cada etapa.
+          </p>
+
+          <div class="hero-ctas reveal reveal-delay-3">
+            <a href="#jornadas" class="btn btn-primary btn-large">
+              Sou prestador
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="#jornadas" class="btn btn-ghost btn-large">Preciso de serviço</a>
+          </div>
+
+          <div class="hero-stats reveal reveal-delay-4">
+            <div class="stat-item">
+              <div class="stat-value">100<span>%</span></div>
+              <div class="stat-label">Prestadores verificados</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">R$<span>0</span></div>
+              <div class="stat-label">Risco para o cliente</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">24<span>h</span></div>
+              <div class="stat-label">Cobertura operacional</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visual -->
+        <div class="hero-visual reveal reveal-delay-2">
+          <!-- Card: Prestador verificado -->
+          <div class="floating-card card-main glass">
+            <div class="card-avatar">
+              <div class="avatar-circle">MR</div>
+              <div>
+                <div class="card-name">Marcos Ribeiro</div>
+                <div class="card-role">// eletricista residencial</div>
+              </div>
+            </div>
+            <div class="rating-row">
+              <span class="stars">★★★★★</span>
+              <span class="rating-num">4.97 · 312 serviços</span>
+            </div>
+            <div class="verified-badge">identidade verificada</div>
+          </div>
+
+          <!-- Card: Pagamento -->
+          <div class="floating-card card-payment">
+            <div class="payment-label">// valor em custódia</div>
+            <div class="payment-amount">R$ 380,00</div>
+            <div class="payment-status">pagamento protegido pela clavia</div>
+          </div>
+
+          <!-- Card: Match -->
+          <div class="floating-card card-match glass">
+            <div class="match-label">// match inteligente</div>
+            <div class="match-bar"><div class="match-fill" style="width:94%"></div></div>
+            <div class="match-row"><span>Compatibilidade</span><span class="match-pct">94%</span></div>
+            <div style="height:8px"></div>
+            <div class="match-bar"><div class="match-fill" style="width:100%"></div></div>
+            <div class="match-row"><span>Região atendida</span><span class="match-pct">✓</span></div>
+            <div style="height:8px"></div>
+            <div class="match-bar"><div class="match-fill" style="width:88%"></div></div>
+            <div class="match-row"><span>Disponibilidade</span><span class="match-pct">88%</span></div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
-  <section>
-    <h2>Real impact for sales teams</h2>
-    <div class="benefits">
-      <div class="card">
-        <h3>Salespeople</h3>
-        <ul>
-          <li>Develop natural empathy.</li>
-          <li>Feel daily improvement.</li>
-          <li>Turn conversations into connections.</li>
-        </ul>
+
+  <!-- ═══════════ HOW IT WORKS ═══════════ -->
+  <section id="como-funciona">
+    <div class="container">
+      <div class="section-header">
+        <div class="tag reveal">Como funciona</div>
+        <h2 class="reveal reveal-delay-1">Três pilares. <span class="highlight">Uma experiência.</span></h2>
+        <p class="reveal reveal-delay-2">A Clavia foi construída sobre confiança, simplicidade e inteligência operacional — para que cada contratação seja segura e sem fricção.</p>
       </div>
-      <div class="card">
-        <h3>Managers</h3>
-        <ul>
-          <li>Make decisions based on emotional data.</li>
-          <li>Reduce internal friction.</li>
-          <li>Build high-trust teams.</li>
-        </ul>
+
+      <div class="pillars-grid">
+        <div class="glass glass-hover pillar-card reveal">
+          <div class="pillar-icon">🛡</div>
+          <h3>Confiança</h3>
+          <p>Todos os prestadores passam por verificação de identidade, análise documental e validação cadastral antes de entrar na plataforma.</p>
+        </div>
+        <div class="glass glass-hover pillar-card reveal reveal-delay-1">
+          <div class="pillar-icon">⚡</div>
+          <h3>Simplicidade</h3>
+          <p>Do cadastro ao pagamento: jornada intuitiva, rápida e sem burocracia. Projetada para quem não tem tempo a perder.</p>
+        </div>
+        <div class="glass glass-hover pillar-card reveal reveal-delay-2">
+          <div class="pillar-icon">🧠</div>
+          <h3>Inteligência</h3>
+          <p>Matching por região, categoria, reputação e disponibilidade. A Clavia encontra o profissional certo para cada solicitação.</p>
+        </div>
+      </div>
+
+      <!-- Flow -->
+      <p class="flow-title reveal">Fluxo completo de contratação</p>
+      <div class="flow-steps reveal">
+        <div class="flow-step">
+          <div class="flow-step-num">1</div>
+          <div class="flow-step-label">Prestador cadastrado e aprovado</div>
+        </div>
+        <div class="flow-connector"></div>
+        <div class="flow-step">
+          <div class="flow-step-num">2</div>
+          <div class="flow-step-label">Usuário solicita o serviço</div>
+        </div>
+        <div class="flow-connector"></div>
+        <div class="flow-step">
+          <div class="flow-step-num">3</div>
+          <div class="flow-step-label">Clavia encontra o match ideal</div>
+        </div>
+        <div class="flow-connector"></div>
+        <div class="flow-step">
+          <div class="flow-step-num">4</div>
+          <div class="flow-step-label">Orçamento enviado e aprovado</div>
+        </div>
+        <div class="flow-connector"></div>
+        <div class="flow-step">
+          <div class="flow-step-num">5</div>
+          <div class="flow-step-label">Pagamento dentro do app</div>
+        </div>
+        <div class="flow-connector"></div>
+        <div class="flow-step">
+          <div class="flow-step-num">6</div>
+          <div class="flow-step-label">Serviço executado</div>
+        </div>
+        <div class="flow-connector"></div>
+        <div class="flow-step">
+          <div class="flow-step-num">7</div>
+          <div class="flow-step-label">Pagamento liberado ao prestador</div>
+        </div>
       </div>
     </div>
   </section>
-  <section class="testimonial">
-    “Clavia taught our team to listen better before trying to sell. The result? Our sales doubled in three months.”<br>
-    <strong>– Marcelo, Sales Director</strong>
-  </section>
-  <section>
-    <h2>Choose your journey</h2>
-    <div class="plans">
-      <div class="card">
-        <h3>Starter</h3>
-        <p>Ideal for small teams.</p>
-        <strong>$49/month</strong>
+
+  <!-- ═══════════ DUAL JOURNEY ═══════════ -->
+  <section id="jornadas">
+    <div class="container">
+      <div class="section-header">
+        <div class="tag reveal">Jornadas</div>
+        <h2 class="reveal reveal-delay-1">Uma plataforma. <span class="highlight">Dois lados.</span></h2>
+        <p class="reveal reveal-delay-2">Experiência dedicada tanto para quem oferece serviços quanto para quem os contrata.</p>
       </div>
-      <div class="card">
-        <h3>Growth</h3>
-        <p>For expanding and creating emotional connections.</p>
-        <strong>$149/month</strong>
+
+      <div class="journey-tabs reveal">
+        <button class="journey-tab active" data-panel="provider">Sou Prestador</button>
+        <button class="journey-tab" data-panel="user">Preciso de Serviço</button>
       </div>
-      <div class="card">
-        <h3>Scale</h3>
-        <p>Teams that lead markets.</p>
-        <strong>$299/month</strong>
+
+      <!-- Provider journey -->
+      <div class="journey-panel active" id="panel-provider">
+        <div class="journey-steps">
+          <div class="glass glass-hover journey-step reveal">
+            <div class="journey-step-num">01</div>
+            <span class="step-icon">📱</span>
+            <h4>Baixe o app e cadastre-se</h4>
+            <p>Nome, CPF ou CNPJ, telefone, e-mail e região de atendimento. Simples e rápido.</p>
+          </div>
+          <div class="glass glass-hover journey-step reveal reveal-delay-1">
+            <div class="journey-step-num">02</div>
+            <span class="step-icon">🪪</span>
+            <h4>Crie seu perfil profissional</h4>
+            <p>Foto, documentos, categorias de serviço, especialidades, portfólio e preços médios.</p>
+          </div>
+          <div class="glass glass-hover journey-step reveal reveal-delay-2">
+            <div class="journey-step-num">03</div>
+            <span class="step-icon">🔍</span>
+            <h4>Passe pela validação</h4>
+            <p>Verificação de CPF/CNPJ, análise documental, biometria facial e checagem de antecedentes.</p>
+          </div>
+          <div class="glass glass-hover journey-step reveal reveal-delay-3">
+            <div class="journey-step-num">04</div>
+            <span class="step-icon">✅</span>
+            <h4>Seja aprovado e ativado</h4>
+            <p>Após aprovação, seu perfil fica visível e você começa a receber solicitações na sua região.</p>
+          </div>
+          <div class="glass glass-hover journey-step reveal reveal-delay-4">
+            <div class="journey-step-num">05</div>
+            <span class="step-icon">💰</span>
+            <h4>Receba, execute e ganhe</h4>
+            <p>Aceite pedidos, envie orçamentos, execute o serviço e receba o pagamento direto na plataforma.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- User journey -->
+      <div class="journey-panel" id="panel-user">
+        <div class="journey-steps">
+          <div class="glass glass-hover journey-step reveal">
+            <div class="journey-step-num">01</div>
+            <span class="step-icon">👤</span>
+            <h4>Crie sua conta</h4>
+            <p>Cadastro simples com nome, telefone, e-mail e endereço. Pronto para solicitar.</p>
+          </div>
+          <div class="glass glass-hover journey-step reveal reveal-delay-1">
+            <div class="journey-step-num">02</div>
+            <span class="step-icon">📋</span>
+            <h4>Solicite o serviço</h4>
+            <p>Descreva o que precisa, envie fotos, informe data, horário e endereço do atendimento.</p>
+          </div>
+          <div class="glass glass-hover journey-step reveal reveal-delay-2">
+            <div class="journey-step-num">03</div>
+            <span class="step-icon">🎯</span>
+            <h4>Receba o orçamento</h4>
+            <p>A Clavia encontra prestadores compatíveis. Você recebe perfil, avaliação e proposta.</p>
+          </div>
+          <div class="glass glass-hover journey-step reveal reveal-delay-3">
+            <div class="journey-step-num">04</div>
+            <span class="step-icon">💳</span>
+            <h4>Pague com segurança</h4>
+            <p>O pagamento é feito dentro do app. O valor fica retido até o serviço ser concluído.</p>
+          </div>
+          <div class="glass glass-hover journey-step reveal reveal-delay-4">
+            <div class="journey-step-num">05</div>
+            <span class="step-icon">⭐</span>
+            <h4>Confirme e avalie</h4>
+            <p>Confirme a conclusão no app. A Clavia libera o pagamento e você avalia o profissional.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
-  <section style="background-color: #fff7f0; border-radius: 12px;">
-    <h2 style="text-align:center;">Join the Clavia Movement</h2>
-    <p style="text-align:center;">We are more than a solution — we are a movement redefining the way humans connect through sales.</p>
-    <div class="movement">
-      <div class="card">
-        <h3>🔥 Enemy</h3>
-        <p>We rebel against empty transactions. Sales must be human or they will be forgotten.</p>
+
+  <!-- ═══════════ PAYMENT FLOW ═══════════ -->
+  <section id="pagamento">
+    <div class="container">
+      <div class="section-header">
+        <div class="tag reveal">Pagamento protegido</div>
+        <h2 class="reveal reveal-delay-1">Seu dinheiro só move <span class="highlight">quando o serviço é entregue.</span></h2>
+        <p class="reveal reveal-delay-2">A Clavia atua como intermediária financeira — o valor fica em custódia até a confirmação da conclusão pelo cliente.</p>
       </div>
-      <div class="card">
-        <h3>📜 Doctrine</h3>
-        <p>Human connection is the real metric of success. Empathy first, numbers second.</p>
-      </div>
-      <div class="card">
-        <h3>✨ Rituals</h3>
-        <p>Celebrate every real connection. Honor the human before the goal.</p>
+
+      <div class="payment-flow-visual reveal">
+        <div class="payment-actors">
+          <div class="glass actor-card">
+            <span class="actor-icon">👤</span>
+            <div class="actor-name">Cliente</div>
+            <div class="actor-desc">Paga dentro do app</div>
+          </div>
+
+          <div class="clavia-center">
+            <div class="clavia-node">🔒</div>
+            <div class="clavia-label">// custódia clavia</div>
+          </div>
+
+          <div class="glass actor-card">
+            <span class="actor-icon">🔧</span>
+            <div class="actor-name">Prestador</div>
+            <div class="actor-desc">Recebe após conclusão</div>
+          </div>
+        </div>
+
+        <div class="payment-steps-list">
+          <div class="glass pay-step reveal">
+            <div class="pay-step-num">// etapa 01</div>
+            <div class="pay-step-text">Cliente aprova o orçamento e realiza o pagamento dentro do app.</div>
+          </div>
+          <div class="glass pay-step reveal reveal-delay-1">
+            <div class="pay-step-num">// etapa 02</div>
+            <div class="pay-step-text">O valor é retido em custódia. Prestador recebe notificação e inicia o serviço.</div>
+          </div>
+          <div class="glass pay-step reveal reveal-delay-2">
+            <div class="pay-step-num">// etapa 03</div>
+            <div class="pay-step-text">Serviço executado. Cliente confirma a conclusão diretamente no app.</div>
+          </div>
+          <div class="glass pay-step reveal reveal-delay-3">
+            <div class="pay-step-num">// etapa 04</div>
+            <div class="pay-step-text">Clavia libera o repasse ao prestador, menos a taxa de plataforma.</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
+
+  <!-- ═══════════ TRUST & SECURITY ═══════════ -->
+  <section id="seguranca">
+    <div class="container">
+      <div class="section-header">
+        <div class="tag reveal">Verificação e confiança</div>
+        <h2 class="reveal reveal-delay-1">Segurança em <span class="highlight">cada camada.</span></h2>
+        <p class="reveal reveal-delay-2">Nenhum prestador entra na Clavia sem passar por uma validação rigorosa de identidade e integridade.</p>
+      </div>
+
+      <div class="trust-grid">
+        <div class="glass glass-hover trust-card reveal">
+          <span class="trust-icon">🪪</span>
+          <h4>Validação de CPF e CNPJ</h4>
+          <p>Checagem em tempo real de situação cadastral e consistência de dados junto aos órgãos competentes.</p>
+        </div>
+        <div class="glass glass-hover trust-card reveal reveal-delay-1">
+          <span class="trust-icon">📄</span>
+          <h4>Conferência documental</h4>
+          <p>Análise de documentos oficiais enviados pelo prestador durante o onboarding — antes de qualquer aprovação.</p>
+        </div>
+        <div class="glass glass-hover trust-card reveal reveal-delay-2">
+          <span class="trust-icon">🤳</span>
+          <h4>Biometria facial</h4>
+          <p>Selfie com prova de vida garante que o cadastro pertence à pessoa real — não a terceiros ou dados falsos.</p>
+        </div>
+        <div class="glass glass-hover trust-card reveal reveal-delay-3">
+          <span class="trust-icon">🔎</span>
+          <h4>Checagem de antecedentes</h4>
+          <p>Análise de integridade com parceiros especializados, garantindo um ambiente seguro para os clientes.</p>
+        </div>
+        <div class="glass glass-hover trust-card reveal reveal-delay-1">
+          <span class="trust-icon">⭐</span>
+          <h4>Sistema de reputação</h4>
+          <p>Avaliações após cada serviço constroem um histórico público de desempenho, visível para todos os usuários.</p>
+        </div>
+        <div class="glass glass-hover trust-card reveal reveal-delay-2">
+          <span class="trust-icon">🔒</span>
+          <h4>Pagamento em custódia</h4>
+          <p>O dinheiro nunca vai direto ao prestador — fica protegido até que o cliente confirme a conclusão do serviço.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ DIFERENCIAL ═══════════ -->
+  <section id="diferencial">
+    <div class="container">
+      <div class="section-header">
+        <div class="tag reveal">Por que a Clavia</div>
+        <h2 class="reveal reveal-delay-1">O que muda <span class="highlight">com uma plataforma própria.</span></h2>
+        <p class="reveal reveal-delay-2">A Clavia deixou de depender de canais de terceiros para oferecer uma experiência digital completa, controlada e escalável.</p>
+      </div>
+
+      <div class="diff-grid">
+        <div class="diff-col old reveal">
+          <div class="diff-col-label">antes</div>
+          <div class="diff-item">
+            <div class="diff-marker">✕</div>
+            <span>Operação via WhatsApp — sem controle da jornada</span>
+          </div>
+          <div class="diff-item">
+            <div class="diff-marker">✕</div>
+            <span>Desintermediação entre cliente e prestador</span>
+          </div>
+          <div class="diff-item">
+            <div class="diff-marker">✕</div>
+            <span>Pagamento fora da plataforma, sem rastreamento</span>
+          </div>
+          <div class="diff-item">
+            <div class="diff-marker">✕</div>
+            <span>Sem validação formal dos prestadores</span>
+          </div>
+          <div class="diff-item">
+            <div class="diff-marker">✕</div>
+            <span>Sem dados próprios ou ativos digitais</span>
+          </div>
+          <div class="diff-item">
+            <div class="diff-marker">✕</div>
+            <span>Escalabilidade limitada por canal externo</span>
+          </div>
+        </div>
+
+        <div class="diff-col new reveal reveal-delay-2">
+          <div class="diff-col-label">com a clavia</div>
+          <div class="diff-item">
+            <div class="diff-marker">✓</div>
+            <span>App próprio com jornada digital completa e controlada</span>
+          </div>
+          <div class="diff-item">
+            <div class="diff-marker">✓</div>
+            <span>Intermediação ativa — Clavia no centro de cada operação</span>
+          </div>
+          <div class="diff-item">
+            <div class="diff-marker">✓</div>
+            <span>Pagamento nativo com custódia e repasse automatizado</span>
+          </div>
+          <div class="diff-item">
+            <div class="diff-marker">✓</div>
+            <span>Onboarding com validação, biometria e análise documental</span>
+          </div>
+          <div class="diff-item">
+            <div class="diff-marker">✓</div>
+            <span>Dados, reputação e histórico — ativos estratégicos da plataforma</span>
+          </div>
+          <div class="diff-item">
+            <div class="diff-marker">✓</div>
+            <span>Arquitetura escalável, mobile-first e orientada a crescimento</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ CTA FINAL ═══════════ -->
+  <section id="cta-final">
+    <div class="container">
+      <div class="cta-box reveal">
+        <div class="tag" style="margin-bottom:32px;display:inline-flex">Faça parte da Clavia</div>
+        <h2>Pronto para começar?</h2>
+        <p>Seja um prestador verificado ou encontre o profissional certo para o seu serviço. A plataforma está esperando por você.</p>
+        <div class="cta-buttons">
+          <a href="#" class="btn btn-primary btn-large">
+            Quero ser prestador
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#" class="btn btn-ghost btn-large">Contratar um serviço</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ FOOTER ═══════════ -->
   <footer>
-    <p>© 2025 Clavia. Humanizing sales with intelligence.</p>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a href="#" class="logo">
+            <div class="logo-mark">
+              <img src="logotipo 14.png" alt="Clavia" />
+            </div>
+            <span class="logo-text">CLAV<span>IA</span></span>
+          </a>
+          <p>Plataforma de contratação de serviços locais com intermediação segura, verificação de prestadores e pagamento protegido.</p>
+        </div>
+
+        <div class="footer-links">
+          <h5>Plataforma</h5>
+          <ul>
+            <li><a href="#">Como funciona</a></li>
+            <li><a href="#">Para prestadores</a></li>
+            <li><a href="#">Para usuários</a></li>
+            <li><a href="#">Segurança</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h5>Categorias</h5>
+          <ul>
+            <li><a href="#">Eletricista</a></li>
+            <li><a href="#">Encanador</a></li>
+            <li><a href="#">Diarista</a></li>
+            <li><a href="#">Pintor</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h5>Empresa</h5>
+          <ul>
+            <li><a href="#">Sobre a Clavia</a></li>
+            <li><a href="#">Termos de uso</a></li>
+            <li><a href="#">Privacidade</a></li>
+            <li><a href="#">Contato</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 Clavia Tecnologia. Todos os direitos reservados.</p>
+        <div class="footer-badge">// sistema de registro de serviços v1.0</div>
+      </div>
+    </div>
   </footer>
+
+  <script>
+    /* ─── PARTICLE SYSTEM ──────────────────────────────────── */
+    (function() {
+      const canvas = document.getElementById('particle-canvas');
+      const ctx    = canvas.getContext('2d');
+      let W, H, particles = [], mouse = { x: 0, y: 0 };
+
+      const PURPLE      = 'rgba(130,95,184,';
+      const PURPLE_LIGHT = 'rgba(210,184,250,';
+      const WHITE       = 'rgba(242,241,242,';
+
+      function resize() {
+        W = canvas.width  = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+      }
+
+      class Particle {
+        constructor() { this.reset(); }
+        reset() {
+          this.x  = Math.random() * W;
+          this.y  = Math.random() * H;
+          this.vx = (Math.random() - 0.5) * 0.3;
+          this.vy = (Math.random() - 0.5) * 0.3;
+          this.r  = Math.random() * 1.5 + 0.3;
+          this.alpha = Math.random() * 0.5 + 0.05;
+          this.pulse = Math.random() * Math.PI * 2;
+          this.pulseSpeed = 0.01 + Math.random() * 0.02;
+          const roll = Math.random();
+          if (roll < 0.6)      this.color = PURPLE;
+          else if (roll < 0.85) this.color = PURPLE_LIGHT;
+          else                  this.color = WHITE;
+        }
+        update() {
+          this.x += this.vx;
+          this.y += this.vy;
+          this.pulse += this.pulseSpeed;
+          const dx = mouse.x - this.x;
+          const dy = mouse.y - this.y;
+          const dist = Math.sqrt(dx*dx + dy*dy);
+          if (dist < 120) {
+            const force = (120 - dist) / 120 * 0.015;
+            this.vx -= dx * force;
+            this.vy -= dy * force;
+          }
+          this.vx *= 0.998;
+          this.vy *= 0.998;
+          if (this.x < -10 || this.x > W+10 || this.y < -10 || this.y > H+10) this.reset();
+        }
+        draw() {
+          const a = this.alpha * (0.7 + 0.3 * Math.sin(this.pulse));
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.r, 0, Math.PI*2);
+          ctx.fillStyle = this.color + a + ')';
+          ctx.fill();
+        }
+      }
+
+      function initParticles() {
+        const count = Math.min(180, Math.floor((W * H) / 9000));
+        particles = Array.from({ length: count }, () => new Particle());
+      }
+
+      function drawConnections() {
+        const limit = 100;
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i+1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const d  = Math.sqrt(dx*dx + dy*dy);
+            if (d < limit) {
+              const a = (1 - d/limit) * 0.08;
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.strokeStyle = PURPLE + a + ')';
+              ctx.lineWidth = 0.5;
+              ctx.stroke();
+            }
+          }
+        }
+      }
+
+      function loop() {
+        ctx.clearRect(0, 0, W, H);
+        drawConnections();
+        particles.forEach(p => { p.update(); p.draw(); });
+        requestAnimationFrame(loop);
+      }
+
+      window.addEventListener('resize', () => { resize(); initParticles(); });
+      window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+
+      resize();
+      initParticles();
+      loop();
+    })();
+
+    /* ─── HEADER SCROLL ────────────────────────────────────── */
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    /* ─── MOBILE NAV ───────────────────────────────────────── */
+    const menuToggle = document.getElementById('menu-toggle');
+    const mainNav    = document.getElementById('main-nav');
+    menuToggle.addEventListener('click', () => mainNav.classList.toggle('open'));
+    mainNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mainNav.classList.remove('open')));
+
+    /* ─── REVEAL ON SCROLL ─────────────────────────────────── */
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    /* ─── JOURNEY TABS ─────────────────────────────────────── */
+    document.querySelectorAll('.journey-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.journey-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.journey-panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById('panel-' + tab.dataset.panel).classList.add('active');
+        // re-trigger reveal for newly visible cards
+        document.querySelectorAll('#panel-' + tab.dataset.panel + ' .reveal').forEach(el => {
+          el.classList.remove('visible');
+          setTimeout(() => el.classList.add('visible'), 50);
+        });
+      });
+    });
+
+    /* ─── SMOOTH SCROLL FOR NAV LINKS ─────────────────────── */
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
