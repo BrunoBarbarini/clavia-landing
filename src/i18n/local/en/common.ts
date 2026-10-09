@@ -1,0 +1,261 @@
+export const common = {
+  brand: 'CLAVIA',
+  nav: {
+    transformation: 'What We Transform',
+    how_we_work: 'How We Work',
+    insights: 'Thinking',
+    about: 'Clavia',
+    contact: 'Contact',
+    cta: 'Talk to Clavia',
+  },
+
+  hero: {
+    overline: 'AI-Native Business Transformation',
+    t1: 'Companies do not need',
+    t2: 'to simply adopt AI.',
+    t3: 'They need to learn to operate',
+    t4: 'in a new way.',
+    sub: 'Clavia redesigns businesses, operations and technology for companies that want to compete in the age of artificial intelligence.',
+    cta_primary: 'Talk to Clavia',
+    cta_secondary: 'How we work',
+    signature: 'Strategy / Operations / AI / Technology / Execution',
+    scroll: 'Scroll to explore',
+    rotating: ['Strategy', 'Operations', 'AI', 'Technology', 'Execution'],
+  },
+
+  shift: {
+    overline: 'The shift',
+    t1: 'AI is not only changing software.',
+    t2: 'It is changing the company.',
+    before_label: 'Before',
+    after_label: 'Now',
+    before: [
+      'People execute processes',
+      'Software records the work',
+      'Decisions depend on meetings',
+      'Automation executes tasks',
+      'Technology supports the business',
+    ],
+    after: [
+      'People + agents execute processes',
+      'Systems interpret and act',
+      'Decisions receive continuous intelligence',
+      'Agents coordinate work',
+      'Technology becomes part of the operation',
+    ],
+    closing_old_label: 'The question is no longer',
+    closing_old: 'How do we use AI?',
+    closing_new_label: 'The new question is',
+    closing_new: 'How should our company work now that AI exists?',
+  },
+
+  transform: {
+    overline: 'What Clavia transforms',
+    title: 'Five systems of transformation.',
+    sub: 'We do not start with technology. We start with the business — and only then decide where AI, software or automation makes sense.',
+    items: [
+      {
+        num: '01',
+        tag: 'Strategy',
+        title: 'Strategy & New Models',
+        desc: 'Where AI actually changes the business.',
+        list: ['AI opportunity mapping', 'New business models', 'Strategic priorities', 'Business cases', 'Roadmaps', 'Build vs buy decisions', 'Data and AI monetization'],
+      },
+      {
+        num: '02',
+        tag: 'Operations',
+        title: 'Operations & Performance',
+        desc: 'Redesign how the work happens.',
+        list: ['Value streams', 'Bottlenecks', 'Processes', 'Productivity', 'Automation', 'Lead time reduction', 'Metrics and efficiency'],
+      },
+      {
+        num: '03',
+        tag: 'AI',
+        title: 'AI & Agentic Operations',
+        desc: 'Introduce intelligence into the workflow.',
+        list: ['AI agents', 'Agentic workflows', 'Copilots', 'Knowledge systems', 'Decision intelligence', 'Intelligent automation', 'Human-in-the-loop', 'AI governance'],
+      },
+      {
+        num: '04',
+        tag: 'Technology',
+        title: 'Technology & Digital Systems',
+        desc: 'When transformation demands technology, we build it.',
+        list: ['Digital products', 'Internal systems', 'Integrations', 'Modernization', 'Data', 'Cloud', 'Custom software'],
+      },
+      {
+        num: '05',
+        tag: 'Organization',
+        title: 'People & Operating Model',
+        desc: 'The company after AI also needs to change from within.',
+        list: ['Roles and responsibilities', 'Operating model', 'Human + AI workflows', 'Enablement', 'Adoption', 'Governance', 'New ways of working'],
+      },
+    ],
+  },
+
+  difference: {
+    overline: 'The Clavia difference',
+    t1: 'Consulting ends in PowerPoint.',
+    t2: 'Software houses start with code.',
+    lead: 'We start with the problem and end with the result.',
+    blocks: [
+      { num: '01', title: 'Understand', desc: 'We understand where value is created, lost or constrained.', icon: 'ri-search-eye-line' },
+      { num: '02', title: 'Redesign', desc: 'We redesign processes, decisions, technology and work.', icon: 'ri-layout-masonry-line' },
+      { num: '03', title: 'Execute', desc: 'We implement whatever is needed to transform the model.', icon: 'ri-rocket-2-line' },
+    ],
+    flow: ['Strategy', 'Redesign', 'Build', 'Operate', 'Measure'],
+  },
+
+  businessfirst: {
+    overline: 'Business first',
+    t1: 'Not AI first.',
+    t2: 'Business first.',
+    lead: 'We do not start by asking which AI model to use. We start by asking:',
+    questions: [
+      'Where is margin being lost?',
+      'Where is time being wasted?',
+      'Where do decisions take too long?',
+      'Where do people perform work machines could do?',
+      'Where is knowledge trapped in individuals?',
+      'Where is there an opportunity to create something that was not possible before?',
+    ],
+    closing: 'Only then do we decide where AI, software or automation makes sense.',
+  },
+
+  method: {
+    overline: 'How we work',
+    title: 'From opportunity to impact.',
+    sub: 'A disciplined sequence — from diagnosis to measurable outcome.',
+    steps: [
+      { num: '01', title: 'Diagnose', desc: 'We understand the business, strategy, operations and economics.' },
+      { num: '02', title: 'Redesign', desc: 'We redesign the value stream, process and operating model.' },
+      { num: '03', title: 'Build', desc: 'We implement technology, automation or AI where necessary.' },
+      { num: '04', title: 'Impact', desc: 'We measure the result, adjust and scale.' },
+      { num: '05', title: 'Scale', desc: 'We scale what provably generates value.' },
+    ],
+  },
+
+  impact: {
+    overline: 'Impact',
+    title_1: 'Technology is measurable.',
+    title_2: 'Transformation must be too.',
+    sub: 'Clavia measures transformation in business outcomes — not in deliverables.',
+    down_label: 'Reduce',
+    up_label: 'Increase',
+    down: ['Lead Time', 'Operating Cost', 'Manual Work'],
+    up: ['Productivity', 'Revenue', 'Capacity', 'Quality', 'Decision Speed'],
+  },
+
+  manifesto: {
+    overline: 'Manifesto',
+    t1: 'The next company',
+    t2: 'will not look like',
+    t3: 'the last company.',
+    p1: 'For decades, companies were designed for a world where people executed work and software merely supported it.',
+    p2: 'That model is changing. Agents can analyze. Decide. Execute. Learn. Coordinate.',
+    p3: 'But adding AI to current processes does not create a company prepared for the future. The work itself must be redesigned.',
+    closing: 'That is why Clavia exists.',
+  },
+
+  audience: {
+    overline: 'Who it is for',
+    title: 'For leaders who realized that waiting is also a decision.',
+    cards: [
+      { role: 'CEO / Founder', question: 'How should my company change?' },
+      { role: 'COO', question: 'How do we grow capacity without growing structure proportionally?' },
+      { role: 'CFO', question: 'Where does AI actually generate return?' },
+      { role: 'CIO / CTO', question: 'What should we build, buy or eliminate?' },
+      { role: 'Business Leader', question: 'How do I transform my operation?' },
+    ],
+  },
+
+  engagements: {
+    overline: 'Possible engagements',
+    title: 'Formats of work.',
+    sub: 'We are not a catalog of services. These are some of the formats from which transformation begins.',
+    items: [
+      { num: '01', title: 'AI Transformation Assessment', desc: 'Executive diagnosis to discover where AI can generate real impact.' },
+      { num: '02', title: 'Business Reinvention Sprint', desc: 'Redesign of a critical value stream within the company.' },
+      { num: '03', title: 'AI Operating Model', desc: 'Definition of how people, processes, data and agents will work together.' },
+      { num: '04', title: 'Transformation Delivery', desc: 'End-to-end implementation of the defined transformation.' },
+      { num: '05', title: 'Executive Advisory', desc: 'Direct support for founders, CEOs and executives.' },
+    ],
+  },
+
+  cases: {
+    overline: 'Proof',
+    title: 'Work in transformation.',
+    sub: 'A structure for cases. Details will be added as each engagement progresses.',
+    context: 'Context',
+    intervention: 'Intervention',
+    impact: 'Impact',
+    placeholder: 'To be informed',
+    items: [
+      { tag: 'Industrial Operations', title: 'Redesign of a critical process combining operations, traceability and technology.' },
+      { tag: 'AI-Assisted Delivery', title: 'Redesign of the development cycle using AI agents.' },
+      { tag: 'Operational Efficiency', title: 'Identification of bottlenecks and redesign of the value stream.' },
+    ],
+  },
+
+  insights: {
+    overline: 'Clavia / Intelligence',
+    title: 'Thinking',
+    sub: 'Ideas on AI-native companies, agentic organizations and the future of work.',
+    cta: 'Read all insights',
+    items: [
+      { num: '01', category: 'AI-Native Companies', title: 'Why AI-native companies will not look like digitized ones.', meta: 'Essays' },
+      { num: '02', category: 'Agentic Organizations', title: 'Agents do not need managers. They need operating models.', meta: 'Essays' },
+      { num: '03', category: 'Business Economics', title: 'AI changes the economics of work before it changes the org chart.', meta: 'Essays' },
+      { num: '04', category: 'Operating Models', title: 'Redesign before automate. Always.', meta: 'Notes' },
+    ],
+  },
+
+  contact: {
+    overline: 'Contact',
+    t1: 'Your company was built',
+    t2: 'before the AI era.',
+    t3: 'It does not have to keep',
+    t4: 'operating the same way.',
+    cta: 'Let us talk.',
+    sub: 'A 30-minute conversation. No sales presentation. We start with your business.',
+    form: {
+      name: 'Name',
+      name_ph: 'Your name',
+      email: 'Email',
+      email_ph: 'you@company.com',
+      company: 'Company',
+      company_ph: 'Company name',
+      role: 'Role',
+      role_ph: 'CEO, COO, CFO…',
+      message: 'Context',
+      message_ph: 'Where is your company today and what do you want to transform?',
+      submit: 'Send',
+      sending: 'Sending…',
+      success: 'We received your message. We will be in touch soon.',
+      error: 'We could not send your message. Please try again.',
+    },
+  },
+
+  principles: [
+    'Business first',
+    'Redesign before automate',
+    'AI changes the economics of work',
+    'Strategy must survive execution',
+    'Measure what changes',
+    'Do not automate a bad process',
+  ],
+
+  footer: {
+    statement: 'Business Transformation for the AI Era.',
+    manifesto: 'Redesign before automate.',
+    navigation: 'Navigation',
+    contact: 'Contact',
+    location: 'São Paulo, Brazil',
+    email: 'contato@clavia.io',
+    rights: '© 2026 Clavia. All rights reserved.',
+    terms: 'Terms',
+    privacy: 'Privacy',
+    back_to_top: 'Back to top',
+  },
+};
+
+export default common;

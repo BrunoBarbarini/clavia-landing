@@ -1,0 +1,261 @@
+export const common = {
+  brand: 'CLAVIA',
+  nav: {
+    transformation: 'Transformação',
+    how_we_work: 'Como Trabalhamos',
+    insights: 'Insights',
+    about: 'Clavia',
+    contact: 'Contato',
+    cta: 'Converse com a Clavia',
+  },
+
+  hero: {
+    overline: 'Transformação Empresarial para a Era da IA',
+    t1: 'Empresas não precisam',
+    t2: 'apenas adotar IA.',
+    t3: 'Precisam aprender a operar',
+    t4: 'de um novo jeito.',
+    sub: 'A Clavia redesenha negócios, operações e tecnologia para empresas que querem competir na era da inteligência artificial.',
+    cta_primary: 'Converse com a Clavia',
+    cta_secondary: 'Como trabalhamos',
+    signature: 'Estratégia / Operações / IA / Tecnologia / Execução',
+    scroll: 'Role para explorar',
+    rotating: ['Estratégia', 'Operações', 'IA', 'Tecnologia', 'Execução'],
+  },
+
+  shift: {
+    overline: 'A mudança',
+    t1: 'A IA não está mudando apenas o software.',
+    t2: 'Está mudando a empresa.',
+    before_label: 'Antes',
+    after_label: 'Agora',
+    before: [
+      'Pessoas executam processos',
+      'Software registra o trabalho',
+      'Decisões dependem de reuniões',
+      'Automação executa tarefas',
+      'Tecnologia suporta o negócio',
+    ],
+    after: [
+      'Pessoas + agentes executam processos',
+      'Sistemas interpretam e agem',
+      'Decisões recebem inteligência contínua',
+      'Agentes coordenam trabalho',
+      'Tecnologia passa a fazer parte da operação',
+    ],
+    closing_old_label: 'A questão deixou de ser',
+    closing_old: 'Como usar IA?',
+    closing_new_label: 'A nova pergunta é',
+    closing_new: 'Como nossa empresa deveria funcionar agora que IA existe?',
+  },
+
+  transform: {
+    overline: 'O que a Clavia transforma',
+    title: 'Cinco sistemas de transformação.',
+    sub: 'Não começamos pela tecnologia. Começamos pelo negócio — e só então decidimos onde IA, software ou automação fazem sentido.',
+    items: [
+      {
+        num: '01',
+        tag: 'Estratégia',
+        title: 'Estratégia & Novos Modelos',
+        desc: 'Onde a IA realmente muda o negócio.',
+        list: ['Mapeamento de oportunidades de IA', 'Novos modelos de negócio', 'Prioridades estratégicas', 'Casos de negócio', 'Roteiros de transformação', 'Decisões construir vs comprar', 'Monetização de dados e IA'],
+      },
+      {
+        num: '02',
+        tag: 'Operações',
+        title: 'Operações & Desempenho',
+        desc: 'Redesenhar como o trabalho acontece.',
+        list: ['Fluxos de valor', 'Gargalos', 'Processos', 'Produtividade', 'Automação', 'Redução do tempo de entrega', 'Indicadores e eficiência'],
+      },
+      {
+        num: '03',
+        tag: 'IA',
+        title: 'IA & Operações Agênticas',
+        desc: 'Introduzir inteligência no fluxo de trabalho.',
+        list: ['Agentes de IA', 'Fluxos de trabalho agênticos', 'Copilotos', 'Sistemas de conhecimento', 'Inteligência de decisão', 'Automação inteligente', 'Humano no circuito', 'Governança de IA'],
+      },
+      {
+        num: '04',
+        tag: 'Tecnologia',
+        title: 'Tecnologia & Sistemas Digitais',
+        desc: 'Quando a transformação exige tecnologia, nós construímos.',
+        list: ['Produtos digitais', 'Sistemas internos', 'Integrações', 'Modernização', 'Dados', 'Nuvem', 'Software sob medida'],
+      },
+      {
+        num: '05',
+        tag: 'Organização',
+        title: 'Pessoas & Modelo Operacional',
+        desc: 'A empresa depois da IA também precisa mudar por dentro.',
+        list: ['Funções e responsabilidades', 'Modelo operacional', 'Fluxos humano + IA', 'Capacitação', 'Adoção', 'Governança', 'Novas formas de trabalhar'],
+      },
+    ],
+  },
+
+  difference: {
+    overline: 'Diferencial Clavia',
+    t1: 'Consultoria termina no PowerPoint.',
+    t2: 'Software house começa no código.',
+    lead: 'Nós começamos no problema e terminamos no resultado.',
+    blocks: [
+      { num: '01', title: 'Compreender', desc: 'Entendemos onde valor é criado, perdido ou limitado.', icon: 'ri-search-eye-line' },
+      { num: '02', title: 'Redesenhar', desc: 'Redesenhamos processos, decisões, tecnologia e trabalho.', icon: 'ri-layout-masonry-line' },
+      { num: '03', title: 'Executar', desc: 'Implementamos o que for necessário para transformar o modelo.', icon: 'ri-rocket-2-line' },
+    ],
+    flow: ['Estratégia', 'Redesenho', 'Construir', 'Operar', 'Medir'],
+  },
+
+  businessfirst: {
+    overline: 'Negócio primeiro',
+    t1: 'Não é IA primeiro.',
+    t2: 'É negócio primeiro.',
+    lead: 'Não começamos perguntando qual modelo de IA usar. Começamos perguntando:',
+    questions: [
+      'Onde existe margem sendo perdida?',
+      'Onde existe tempo sendo desperdiçado?',
+      'Onde decisões demoram demais?',
+      'Onde pessoas executam trabalho que máquinas poderiam executar?',
+      'Onde conhecimento está preso em indivíduos?',
+      'Onde existe uma oportunidade de criar algo que antes não era possível?',
+    ],
+    closing: 'Só então decidimos onde IA, software ou automação fazem sentido.',
+  },
+
+  method: {
+    overline: 'Modelo de atuação',
+    title: 'Da oportunidade ao impacto.',
+    sub: 'Uma sequência disciplinada — do diagnóstico ao resultado mensurável.',
+    steps: [
+      { num: '01', title: 'Diagnóstico', desc: 'Entendemos o negócio, a estratégia, a operação e a economia.' },
+      { num: '02', title: 'Redesenho', desc: 'Redesenhamos o fluxo de valor, o processo e o modelo operacional.' },
+      { num: '03', title: 'Construir', desc: 'Implementamos tecnologia, automação ou IA quando necessário.' },
+      { num: '04', title: 'Impacto', desc: 'Medimos o resultado, ajustamos e escalamos.' },
+      { num: '05', title: 'Escala', desc: 'Escalamos o que comprovadamente gera valor.' },
+    ],
+  },
+
+  impact: {
+    overline: 'Impacto',
+    title_1: 'Tecnologia é mensurável.',
+    title_2: 'A transformação também precisa ser.',
+    sub: 'A Clavia mede transformação em resultados de negócio — não em entregáveis.',
+    down_label: 'Reduzir',
+    up_label: 'Aumentar',
+    down: ['Tempo de entrega', 'Custo operacional', 'Trabalho manual'],
+    up: ['Produtividade', 'Receita', 'Capacidade', 'Qualidade', 'Velocidade de decisão'],
+  },
+
+  manifesto: {
+    overline: 'Manifesto',
+    t1: 'A próxima empresa',
+    t2: 'não vai se parecer',
+    t3: 'com a última empresa.',
+    p1: 'Durante décadas, empresas foram desenhadas para um mundo onde pessoas executavam trabalho e software apenas apoiava.',
+    p2: 'Esse modelo está mudando. Agentes podem analisar. Decidir. Executar. Aprender. Coordenar.',
+    p3: 'Mas adicionar IA aos processos atuais não cria uma empresa preparada para o futuro. É preciso redesenhar o trabalho.',
+    closing: 'É para isso que a Clavia existe.',
+  },
+
+  audience: {
+    overline: 'Para quem é',
+    title: 'Para líderes que perceberam que esperar também é uma decisão.',
+    cards: [
+      { role: 'CEO / Fundador', question: 'Como minha empresa deve mudar?' },
+      { role: 'COO', question: 'Como aumentar capacidade sem aumentar proporcionalmente estrutura?' },
+      { role: 'CFO', question: 'Onde IA realmente gera retorno?' },
+      { role: 'CIO / CTO', question: 'O que devemos construir, comprar ou eliminar?' },
+      { role: 'Líder de Negócio', question: 'Como transformar minha operação?' },
+    ],
+  },
+
+  engagements: {
+    overline: 'Possíveis formatos',
+    title: 'Formatos de trabalho.',
+    sub: 'Não somos um catálogo de serviços. Estes são alguns dos formatos a partir dos quais a transformação começa.',
+    items: [
+      { num: '01', title: 'Diagnóstico de Transformação em IA', desc: 'Diagnóstico executivo para descobrir onde IA pode gerar impacto real.' },
+      { num: '02', title: 'Sprint de Reinvenção do Negócio', desc: 'Redesenho de um fluxo de valor crítico da empresa.' },
+      { num: '03', title: 'Modelo Operacional de IA', desc: 'Definição de como pessoas, processos, dados e agentes trabalharão juntos.' },
+      { num: '04', title: 'Entrega de Transformação', desc: 'Implementação ponta a ponta da transformação definida.' },
+      { num: '05', title: 'Assessoria Executiva', desc: 'Acompanhamento direto de fundadores, CEOs e executivos.' },
+    ],
+  },
+
+  cases: {
+    overline: 'Prova',
+    title: 'Trabalho em transformação.',
+    sub: 'Estrutura para cases. Os detalhes serão informados à medida que cada projeto avança.',
+    context: 'Contexto',
+    intervention: 'Intervenção',
+    impact: 'Impacto',
+    placeholder: 'A informar',
+    items: [
+      { tag: 'Operações Industriais', title: 'Redesenho de um processo crítico combinando operação, rastreabilidade e tecnologia.' },
+      { tag: 'Entrega Assistida por IA', title: 'Redesenho do ciclo de desenvolvimento utilizando agentes de IA.' },
+      { tag: 'Eficiência Operacional', title: 'Identificação de gargalos e redesenho do fluxo de valor.' },
+    ],
+  },
+
+  insights: {
+    overline: 'Clavia / Inteligência',
+    title: 'Ideias',
+    sub: 'Reflexões sobre empresas nativas em IA, organizações agênticas e o futuro do trabalho.',
+    cta: 'Ler todos os insights',
+    items: [
+      { num: '01', category: 'Empresas Nativas em IA', title: 'Por que empresas nativas em IA não se parecem com empresas digitalizadas.', meta: 'Ensaios' },
+      { num: '02', category: 'Organizações Agênticas', title: 'Agentes não precisam de gerentes. Precisam de modelos operacionais.', meta: 'Ensaios' },
+      { num: '03', category: 'Economia do Negócio', title: 'A IA muda a economia do trabalho antes de mudar o organograma.', meta: 'Ensaios' },
+      { num: '04', category: 'Modelos Operacionais', title: 'Redesenhar antes de automatizar. Sempre.', meta: 'Notas' },
+    ],
+  },
+
+  contact: {
+    overline: 'Contato',
+    t1: 'Sua empresa foi construída',
+    t2: 'antes da era da IA.',
+    t3: 'Ela não precisa continuar',
+    t4: 'operando da mesma forma.',
+    cta: 'Vamos conversar.',
+    sub: 'Uma conversa de 30 minutos. Sem apresentação comercial. Começamos pelo seu negócio.',
+    form: {
+      name: 'Nome',
+      name_ph: 'Seu nome',
+      email: 'E-mail',
+      email_ph: 'voce@empresa.com',
+      company: 'Empresa',
+      company_ph: 'Nome da empresa',
+      role: 'Cargo',
+      role_ph: 'CEO, COO, CFO…',
+      message: 'Contexto',
+      message_ph: 'Onde sua empresa está hoje e o que você quer transformar?',
+      submit: 'Enviar',
+      sending: 'Enviando…',
+      success: 'Recebemos sua mensagem. Entraremos em contato em breve.',
+      error: 'Não foi possível enviar sua mensagem. Tente novamente.',
+    },
+  },
+
+  principles: [
+    'Negócio primeiro',
+    'Redesenhar antes de automatizar',
+    'IA muda a economia do trabalho',
+    'Estratégia precisa sobreviver à execução',
+    'Medir o que muda',
+    'Não automatize um processo ruim',
+  ],
+
+  footer: {
+    statement: 'Transformação de negócios para a era da IA.',
+    manifesto: 'Redesenhar antes de automatizar.',
+    navigation: 'Navegação',
+    contact: 'Contato',
+    location: 'São Paulo, Brasil',
+    email: 'contato@clavia.io',
+    rights: '© 2026 Clavia. Todos os direitos reservados.',
+    terms: 'Termos',
+    privacy: 'Privacidade',
+    back_to_top: 'Voltar ao topo',
+  },
+};
+
+export default common;
